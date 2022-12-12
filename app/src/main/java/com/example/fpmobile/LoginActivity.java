@@ -15,6 +15,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class LoginActivity extends AppCompatActivity {
     private TextView daftar;
@@ -59,12 +63,41 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    // to do need check if user is USER role
-                    Toast.makeText(LoginActivity.this, "Login sukses", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
+                    // Mendapatkan data user yang berada di aplikasi
+                    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                    String userUid = currentUser.getUid();
+
+                    FirebaseFirestore
+                            .getInstance()
+                            .collection("users")
+                            .whereEqualTo("role", "user")
+                            .whereEqualTo("uid", userUid)
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        boolean isUser = false;
+                                        for (QueryDocumentSnapshot doc : task.getResult()) {
+                                            if (doc.exists()) {
+                                                isUser = true;
+                                            }
+                                        }
+                                        if (isUser) {
+                                            Toast.makeText(LoginActivity.this, "Login sukses", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                            finish();
+                                        } else {
+                                            FirebaseAuth.getInstance().signOut();
+                                            Toast.makeText(LoginActivity.this, "Login gagal", Toast.LENGTH_SHORT).show();
+                                        }
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                 } else {
-                    Toast.makeText(LoginActivity.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
