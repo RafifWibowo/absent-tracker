@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:id="@+id/profile_user_data">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="130dp"
+            android:src="@drawable/avatar" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="25dp"
+            android:textColor="@color/main"
+            android:fontFamily="@font/montserratbold"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="-7dp"
+            android:id="@+id/profile_name"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:fontFamily="@font/montserratregular"
+            android:layout_marginBottom="8dp"
+            android:id="@+id/profile_email"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:fontFamily="@font/montserratmedium"
+            android:textColor="@color/red"
+            android:textSize="18dp"
+            android:id="@+id/profile_logout"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_user_data"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="20dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Event Kamu"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/montserratbold"
+            android:layout_marginBottom="10dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#222"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="80dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/profile_container"
+                android:background="@color/background"
+                >
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/profile_card" />
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/profile_card" />
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/profile_card" />
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/profile_card" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        layout="@layout/navigation" />
+
+</RelativeLayout>

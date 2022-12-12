@@ -35,8 +35,9 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 //    private Button mainLogoutBtn;
-    LinearLayout layout;
+    private LinearLayout layout;
     private TextView user;
+    private LinearLayout nav_profile_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,15 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(new Intent(MainActivity.this, LoginActivity.class));
 //            }
 //        });
+
+        nav_profile_btn = findViewById(R.id.nav_profile);
+        nav_profile_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                finish();
+            }
+        });
 
         user = findViewById(R.id.main_current_user);
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();

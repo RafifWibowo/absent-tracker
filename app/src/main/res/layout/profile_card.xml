@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:layout_marginBottom="15dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="15dp"
+            android:paddingTop="13dp"
+            android:orientation="horizontal"
+            android:background="@color/card_background">
+            <ImageView
+                android:layout_width="130dp"
+                android:layout_height="80dp"
+                android:src="@drawable/image2"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/card_img" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Event"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/montserratbold"
+                    android:textColor="@color/black"
+                    android:id="@+id/card_title" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tanggal Event"
+                    android:fontFamily="@font/montserratmedium"
+                    android:layout_marginBottom="10dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Absen!"
+                    android:textColor="@color/main"
+                    android:fontFamily="@font/montserratbold"
+                    android:textSize="18dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
