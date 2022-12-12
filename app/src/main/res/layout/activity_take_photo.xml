@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context=".take_photo">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/montserratbold"
+        android:gravity="center"
+        android:text="Ambil Foto"
+        android:textColor="@color/black"
+        android:textSize="40sp" />
+
+    <ImageView
+        android:id="@+id/hasilFoto"
+        android:layout_width="match_parent"
+        android:layout_height="264dp"
+        android:layout_marginBottom="20dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/takePicBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/main"
+        android:fontFamily="@font/montserratmedium"
+        android:text="Ambil Foto" />
+
+    <Button
+        android:id="@+id/sendPicBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/main"
+        android:fontFamily="@font/montserratmedium"
+        android:text="Kirim" />
+
+</LinearLayout>
