@@ -22,7 +22,7 @@
         android:textSize="40sp" />
 
     <ImageView
-        android:id="@+id/hasilFoto"
+        android:id="@+id/locIcon"
         android:layout_width="match_parent"
         android:layout_height="218dp"
         tools:srcCompat="@drawable/location" />
