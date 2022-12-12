@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot doc : task.getResult()) {
-                                addEventCard(doc.getData());
+                                addEventCard(doc.getData(), doc.getId());
                             }
                         } else {
                             Toast.makeText(MainActivity.this, "Gagal mendapatkan data event", Toast.LENGTH_SHORT).show();
@@ -105,16 +105,26 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    private void addEventCard(Map<String, Object> data) {
+    private void addEventCard(Map<String, Object> data, String id) {
         View v = getLayoutInflater().inflate(R.layout.card, null);
 
         TextView title = v.findViewById(R.id.card_title);
         TextView desc = v.findViewById(R.id.card_desc);
         ImageView img = v.findViewById(R.id.card_img);
+        LinearLayout wrapper = v.findViewById(R.id.main_card_wrapper);
 
         title.setText(data.get("title").toString());
         desc.setText(data.get("desc").toString().substring(0, 80) + "...");
         Picasso.get().load(data.get("path").toString()).into(img);
+
+        wrapper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, event_details.class).putExtra("id", id));
+//                finish();
+            }
+        });
+
         layout.addView(v);
     }
 }

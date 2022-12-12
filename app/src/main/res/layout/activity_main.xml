@@ -7,57 +7,49 @@
     tools:context=".MainActivity"
     android:background="@color/background">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="15dp"
-        android:paddingHorizontal="20dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Selamat Datang, "
-            android:fontFamily="@font/montserratbold"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:fontFamily="@font/montserratbold"
-            android:textColor="@color/main"
-            android:textSize="20dp"
-            android:id="@+id/main_current_user"/>
-    </LinearLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="80dp"
-        android:layout_marginTop="65dp"
-        android:paddingHorizontal="20dp">
+        android:layout_marginBottom="80dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/main_container"
-            android:background="@color/background"
-            >
+            android:paddingTop="20dp"
+            android:paddingHorizontal="20dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Selamat Datang, "
+                    android:fontFamily="@font/montserratbold"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="User!"
+                    android:fontFamily="@font/montserratbold"
+                    android:textColor="@color/main"
+                    android:textSize="20dp"
+                    android:id="@+id/main_current_user"/>
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/main_container"
+                android:background="@color/background"
+                >
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
-    
-<!--    <Button-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Logout"-->
-<!--        android:backgroundTint="@color/main"-->
-<!--        android:fontFamily="@font/montserratmedium"-->
-<!--        android:id="@+id/main_logout_btn"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_marginBottom="20dp"/>-->
 
     <include
         android:layout_width="match_parent"
