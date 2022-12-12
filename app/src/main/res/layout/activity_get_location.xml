@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
     android:background="@color/background"
-    android:orientation="vertical"
-    tools:context=".take_photo">
+    tools:context=".get_location">
 
     <TextView
         android:layout_width="match_parent"
@@ -17,33 +17,52 @@
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/montserratbold"
         android:gravity="center"
-        android:text="Ambil Foto"
+        android:text="Cek Lokasi"
         android:textColor="@color/black"
         android:textSize="40sp" />
 
     <ImageView
         android:id="@+id/hasilFoto"
         android:layout_width="match_parent"
-        android:layout_height="264dp"
-        android:layout_marginBottom="20dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_height="218dp"
+        tools:srcCompat="@drawable/location" />
+
+    <TextView
+        android:id="@+id/latitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserratmedium"
+        android:gravity="center"
+        android:text="Latitude"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/longitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserratmedium"
+        android:gravity="center"
+        android:text="Longitude"
+        android:textSize="25sp" />
 
     <Button
-        android:id="@+id/takePicBtn"
+        android:id="@+id/getLocBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:backgroundTint="@color/main"
-        android:fontFamily="@font/montserratmedium"
-        android:text="Ambil Foto" />
+        android:fontFamily="@font/montserratbold"
+        android:text="Ambil Lokasi" />
 
     <Button
-        android:id="@+id/sendPicBtn"
+        android:id="@+id/sendLocBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/main"
-        android:fontFamily="@font/montserratmedium"
+        android:fontFamily="@font/montserratbold"
         android:text="Kirim" />
 
 </LinearLayout>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -17,6 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FPMobile"
         tools:targetApi="31">
+        <activity
+            android:name=".get_location"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".ProfileActivity"
             android:exported="false">
@@ -94,13 +101,13 @@
         </activity>
 
         <provider
-            android:authorities="com.example.fpmobile.fileprovider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.fpmobile.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 
