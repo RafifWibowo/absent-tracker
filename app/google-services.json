@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "536318712366",
+    "project_id": "fpmobile-2b7b4",
+    "storage_bucket": "fpmobile-2b7b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536318712366:android:e1143b40d123af96941dbf",
+        "android_client_info": {
+          "package_name": "com.example.fpmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "536318712366-aijho47enc932bjq9at5daa4uuh0u8kr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLgPjMCtM4AzMQ8ZSbKjgq1kQIn1N26qs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "536318712366-aijho47enc932bjq9at5daa4uuh0u8kr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

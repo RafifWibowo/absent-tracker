@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class SplashScreenActivity extends AppCompatActivity {
     Handler handlerSplashScreen = new Handler();
 
@@ -17,10 +20,13 @@ public class SplashScreenActivity extends AppCompatActivity {
         handlerSplashScreen.postDelayed(new Runnable() {
             @Override
             public void run() {
-                // need conditional if there is current user
-                Intent loginIntent = new Intent(SplashScreenActivity.this, LoginActivity.class);
-                startActivity(loginIntent);
-                finish();
+                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                if (currentUser != null) {
+                    startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+                    finish();
+                } else {
+                    startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
+                }
             }
         }, 3000);
     }

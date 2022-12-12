@@ -63,6 +63,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/main"
         android:text="Submit"
-        android:fontFamily="@font/montserratmedium" />
+        android:fontFamily="@font/montserratmedium"
+        android:id="@+id/login_btn"/>
 
 </LinearLayout>
