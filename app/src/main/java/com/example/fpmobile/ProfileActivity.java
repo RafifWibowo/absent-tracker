@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,17 +18,25 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
+
+import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
     private LinearLayout nav_profile_home;
     private TextView logout_btn;
     private TextView name;
     private TextView email;
+    private LinearLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        layout = findViewById(R.id.profile_container);
 
         name = findViewById(R.id.profile_name);
         email = findViewById(R.id.profile_email);
@@ -71,5 +80,57 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
+
+        FirebaseFirestore
+                .getInstance()
+                .collection("absen")
+                .whereEqualTo("user_id", userUid)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot doc : task.getResult()) {
+                                DocumentReference docRef = FirebaseFirestore.getInstance().collection("events").document(doc.getData().get("event_id").toString());
+                                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            DocumentSnapshot dok = task.getResult();
+                                            if (dok.exists()) {
+                                                addEventCard(dok.getData(), dok.getId());
+                                            } else {
+                                                Toast.makeText(ProfileActivity.this, "Data event detail tidak ditemukan", Toast.LENGTH_SHORT).show();
+                                            }
+                                        } else {
+                                            Toast.makeText(ProfileActivity.this, "Gagal mendapatkan data event detail", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
+                        } else {
+                            Toast.makeText(ProfileActivity.this, "Gagal mendapatkan event yang telah didaftarkan", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    private void addEventCard(Map<String, Object> data, String id) {
+        View v = getLayoutInflater().inflate(R.layout.profile_card, null);
+
+        // status: absen saat masih false, berhasil saat sudah absen, tidak absen saat false dan event "non-aktif"
+
+        // to do: link to absen by wrapper, status absen, connect to AI
+        LinearLayout wrapper = v.findViewById(R.id.profile_card_wrapper);
+        ImageView img = v.findViewById(R.id.profile_card_img);
+        TextView title = v.findViewById(R.id.profile_card_title);
+        TextView time = v.findViewById(R.id.profile_card_time);
+        TextView status = v.findViewById(R.id.profile_card_status);
+
+        title.setText(data.get("title").toString());
+        time.setText(data.get("time").toString());
+        Picasso.get().load(data.get("path").toString()).into(img);
+
+        layout.addView(v);
     }
 }

@@ -82,22 +82,6 @@
                 android:id="@+id/profile_container"
                 android:background="@color/background"
                 >
-                <include
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    layout="@layout/profile_card" />
-                <include
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    layout="@layout/profile_card" />
-                <include
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    layout="@layout/profile_card" />
-                <include
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    layout="@layout/profile_card" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

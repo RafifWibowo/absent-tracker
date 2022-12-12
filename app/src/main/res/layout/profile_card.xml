@@ -16,13 +16,14 @@
             android:paddingHorizontal="15dp"
             android:paddingTop="13dp"
             android:orientation="horizontal"
-            android:background="@color/card_background">
+            android:background="@color/card_background"
+            android:id="@+id/profile_card_wrapper">
             <ImageView
                 android:layout_width="130dp"
                 android:layout_height="80dp"
                 android:src="@drawable/image2"
                 android:layout_marginBottom="10dp"
-                android:id="@+id/card_img" />
+                android:id="@+id/profile_card_img" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,12 +36,13 @@
                     android:textSize="20dp"
                     android:fontFamily="@font/montserratbold"
                     android:textColor="@color/black"
-                    android:id="@+id/card_title" />
+                    android:id="@+id/profile_card_title" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Tanggal Event"
                     android:fontFamily="@font/montserratmedium"
+                    android:id="@+id/profile_card_time"
                     android:layout_marginBottom="10dp"/>
                 <TextView
                     android:layout_width="match_parent"
@@ -48,7 +50,8 @@
                     android:text="Absen!"
                     android:textColor="@color/main"
                     android:fontFamily="@font/montserratbold"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:id="@+id/profile_card_status" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
