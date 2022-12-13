@@ -101,7 +101,7 @@ public class ProfileActivity extends AppCompatActivity {
                                         if (task.isSuccessful()) {
                                             DocumentSnapshot dok = task.getResult();
                                             if (dok.exists()) {
-                                                addEventCard(dok.getData(), dok.getId(), doc.getData());
+                                                addEventCard(dok.getData(), dok.getId(), doc.getData(), doc.getId());
                                             } else {
                                                 Toast.makeText(ProfileActivity.this, "Data event detail tidak ditemukan", Toast.LENGTH_SHORT).show();
                                             }
@@ -118,7 +118,7 @@ public class ProfileActivity extends AppCompatActivity {
                 });
     }
 
-    private void addEventCard(Map<String, Object> data, String id, Map<String, Object> relation) {
+    private void addEventCard(Map<String, Object> data, String id, Map<String, Object> relation, String absenId) {
         View v = getLayoutInflater().inflate(R.layout.profile_card, null);
 
         // status: absen saat masih false, berhasil saat sudah absen, tidak absen saat false dan event "non-aktif"
@@ -148,7 +148,7 @@ public class ProfileActivity extends AppCompatActivity {
         status.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ProfileActivity.this, get_location.class).putExtra("id", id));
+                startActivity(new Intent(ProfileActivity.this, get_location.class).putExtra("id", id).putExtra("absenId", absenId));
             }
         });
 

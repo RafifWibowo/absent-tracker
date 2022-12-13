@@ -38,7 +38,7 @@ public class get_location extends AppCompatActivity {
     TextView latitude, longitude, title;
     Button getLocBtn, validateBtn;
     private final static int REQUEST_CODE = 100;
-    private String id;
+    private String id, absenId;
     Double latDb, lonDb;
 
     @Override
@@ -62,6 +62,7 @@ public class get_location extends AppCompatActivity {
         });
 
         id = getIntent().getStringExtra("id");
+        absenId = getIntent().getStringExtra("absenId");
 
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("events").document(id);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -125,7 +126,7 @@ public class get_location extends AppCompatActivity {
 
         if (latParam >= minLat && latParam <= maxLat && lonParam >= minLon && lonParam <= maxLon) {
             Toast.makeText(this, "Validasi lokasi sukses", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(get_location.this, take_photo.class));
+            startActivity(new Intent(get_location.this, take_photo.class).putExtra("id", absenId));
             finish();
         } else {
             Toast.makeText(this, "Validasi lokasi gagal", Toast.LENGTH_SHORT).show();

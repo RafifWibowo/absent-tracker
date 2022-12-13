@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
+    android:paddingHorizontal="20dp"
     android:background="@color/background"
     tools:context=".success">
 
@@ -14,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="50dp"
         android:fontFamily="@font/montserratbold"
         android:gravity="center"
         android:text="Terima Kasih Sudah Absen"
@@ -24,17 +23,16 @@
     <ImageView
         android:id="@+id/successIcon"
         android:layout_width="match_parent"
-        android:layout_height="218dp"
-        tools:srcCompat="@drawable/succes" />
+        android:layout_height="160dp"
+        android:src="@drawable/succes" />
 
     <Button
         android:id="@+id/successBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="70dp"
         android:backgroundTint="@color/main"
         android:fontFamily="@font/montserratbold"
         android:text="Kembali Ke Beranda" />
-
 
 </LinearLayout>
