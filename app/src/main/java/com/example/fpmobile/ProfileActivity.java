@@ -134,23 +134,22 @@ public class ProfileActivity extends AppCompatActivity {
         time.setText(data.get("time").toString());
         Picasso.get().load(data.get("path").toString()).into(img);
 
-        // Jika belum absen dan status event active
-//        if (data.get("status").toString().equals("active") && !Boolean.parseBoolean(relation.get("status").toString())) {
-//            status.setText("Absen Sekarang!");
-            // Jika date kurang 1 jam dan masih dalam hari yang sama, tampilkan "Absen Sekarang!"
-
-
-            // Jika date lebih dari hari itu, tampilkan "Tidak Absen!"
-//        }
-
-        status.setText("Absen Sekarang!");
-
-        status.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ProfileActivity.this, get_location.class).putExtra("id", id).putExtra("absenId", absenId));
-            }
-        });
+        // Jika user sudah absen
+        if (Boolean.parseBoolean(relation.get("status").toString())) {
+            status.setText("Sudah Absen!");
+        }
+        // Jika event masih aktif & user belum absen
+        else if (data.get("status").toString().equals("active")) {
+            status.setText("Absen Sekarang!");
+            status.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(ProfileActivity.this, get_location.class).putExtra("id", id).putExtra("absenId", absenId));
+                }
+            });
+        } else {
+            status.setText("Tidak Absen!");
+        }
 
         layout.addView(v);
     }
