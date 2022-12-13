@@ -123,7 +123,7 @@ public class take_photo extends AppCompatActivity {
                 false
         );
 
-        InputImage inputImage = InputImage.fromBitmap(smallerBitmap, 270);
+        InputImage inputImage = InputImage.fromBitmap(smallerBitmap, 90);
 
         detector.process(inputImage)
                 .addOnSuccessListener(new OnSuccessListener<List<Face>>() {

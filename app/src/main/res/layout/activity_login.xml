@@ -1,69 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
     android:background="@color/background"
-    android:orientation="vertical"
     android:paddingHorizontal="20dp">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:layout_marginTop="90dp"
-        android:textSize="40dp"
-        android:fontFamily="@font/montserratbold"
-        android:textColor="@color/black"
-        android:layout_marginBottom="20dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:fontFamily="@font/montserratmedium"
-        android:height="60dp"
-        android:id="@+id/login_email"
-        android:layout_marginBottom="10dp" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:fontFamily="@font/montserratmedium"
-        android:height="60dp"
-        android:id="@+id/login_password"
-        android:layout_marginBottom="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="25dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Belum punya akun? "
-            android:fontFamily="@font/montserratmedium"
-            android:textSize="15dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Daftar"
+            android:text="Login"
+            android:layout_marginTop="90dp"
+            android:textSize="40dp"
             android:fontFamily="@font/montserratbold"
-            android:textSize="15dp"
-            android:id="@+id/login_daftar"
-            />
+            android:textColor="@color/black"
+            android:layout_marginBottom="20dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:fontFamily="@font/montserratmedium"
+            android:id="@+id/login_email"
+            android:layout_marginBottom="15dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:fontFamily="@font/montserratmedium"
+            android:height="60dp"
+            android:id="@+id/login_password"
+            android:layout_marginBottom="25dp"
+            android:inputType="textPassword"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="25dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Belum punya akun? "
+                android:fontFamily="@font/montserratmedium"
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daftar"
+                android:fontFamily="@font/montserratbold"
+                android:textSize="15dp"
+                android:id="@+id/login_daftar"
+                />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/main"
+            android:text="Submit"
+            android:fontFamily="@font/montserratmedium"
+            android:id="@+id/login_btn"/>
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/main"
-        android:text="Submit"
-        android:fontFamily="@font/montserratmedium"
-        android:id="@+id/login_btn"/>
-
-</LinearLayout>
+</ScrollView>

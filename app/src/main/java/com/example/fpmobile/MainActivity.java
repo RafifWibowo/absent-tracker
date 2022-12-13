@@ -34,7 +34,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-//    private Button mainLogoutBtn;
     private LinearLayout layout;
     private TextView user;
     private LinearLayout nav_profile_btn;
@@ -45,16 +44,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         layout = findViewById(R.id.main_container);
-
-//        mainLogoutBtn = findViewById(R.id.main_logout_btn);
-//        mainLogoutBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                FirebaseAuth.getInstance().signOut();
-//                Toast.makeText(MainActivity.this, "Sukses logout", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-//            }
-//        });
 
         nav_profile_btn = findViewById(R.id.nav_profile);
         nav_profile_btn.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, event_details.class).putExtra("id", id));
-//                finish();
             }
         });
 
