@@ -24,7 +24,6 @@ public class take_photo extends AppCompatActivity {
     Button sendPicBtn;
     private String currPicPath;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

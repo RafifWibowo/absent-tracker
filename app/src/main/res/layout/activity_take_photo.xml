@@ -13,8 +13,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
         android:fontFamily="@font/montserratbold"
         android:gravity="center"
         android:text="Ambil Foto"
@@ -25,14 +25,14 @@
         android:id="@+id/hasilFoto"
         android:layout_width="match_parent"
         android:layout_height="264dp"
-        android:layout_marginBottom="20dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_marginBottom="50dp"
+        android:src="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/takePicBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/main"
         android:fontFamily="@font/montserratmedium"
         android:text="Ambil Foto" />
@@ -41,9 +41,10 @@
         android:id="@+id/sendPicBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/main"
         android:fontFamily="@font/montserratmedium"
-        android:text="Kirim" />
+        android:text="Validasi Gambar"
+        android:visibility="gone" />
 
 </LinearLayout>

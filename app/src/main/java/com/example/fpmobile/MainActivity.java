@@ -114,7 +114,11 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout wrapper = v.findViewById(R.id.main_card_wrapper);
 
         title.setText(data.get("title").toString());
-        desc.setText(data.get("desc").toString().substring(0, 80) + "...");
+        if (data.get("desc").toString().length() > 80) {
+            desc.setText(data.get("desc").toString().substring(0, 80) + "...");
+        } else {
+            desc.setText(data.get("desc").toString());
+        }
         Picasso.get().load(data.get("path").toString()).into(img);
 
         wrapper.setOnClickListener(new View.OnClickListener() {

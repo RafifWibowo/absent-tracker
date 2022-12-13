@@ -91,14 +91,17 @@ public class ProfileActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot doc : task.getResult()) {
-                                DocumentReference docRef = FirebaseFirestore.getInstance().collection("events").document(doc.getData().get("event_id").toString());
+                                DocumentReference docRef = FirebaseFirestore
+                                        .getInstance()
+                                        .collection("events")
+                                        .document(doc.getData().get("event_id").toString());
                                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                     @Override
                                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                         if (task.isSuccessful()) {
                                             DocumentSnapshot dok = task.getResult();
                                             if (dok.exists()) {
-                                                addEventCard(dok.getData(), dok.getId());
+                                                addEventCard(dok.getData(), dok.getId(), doc.getData());
                                             } else {
                                                 Toast.makeText(ProfileActivity.this, "Data event detail tidak ditemukan", Toast.LENGTH_SHORT).show();
                                             }
@@ -115,7 +118,7 @@ public class ProfileActivity extends AppCompatActivity {
                 });
     }
 
-    private void addEventCard(Map<String, Object> data, String id) {
+    private void addEventCard(Map<String, Object> data, String id, Map<String, Object> relation) {
         View v = getLayoutInflater().inflate(R.layout.profile_card, null);
 
         // status: absen saat masih false, berhasil saat sudah absen, tidak absen saat false dan event "non-aktif"
@@ -130,6 +133,24 @@ public class ProfileActivity extends AppCompatActivity {
         title.setText(data.get("title").toString());
         time.setText(data.get("time").toString());
         Picasso.get().load(data.get("path").toString()).into(img);
+
+        // Jika belum absen dan status event active
+//        if (data.get("status").toString().equals("active") && !Boolean.parseBoolean(relation.get("status").toString())) {
+//            status.setText("Absen Sekarang!");
+            // Jika date kurang 1 jam dan masih dalam hari yang sama, tampilkan "Absen Sekarang!"
+
+
+            // Jika date lebih dari hari itu, tampilkan "Tidak Absen!"
+//        }
+
+        status.setText("Absen Sekarang!");
+
+        status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfileActivity.this, get_location.class).putExtra("id", id));
+            }
+        });
 
         layout.addView(v);
     }

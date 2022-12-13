@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -21,18 +22,24 @@ import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
 public class get_location extends AppCompatActivity {
-
     FusedLocationProviderClient fusedLocationProviderClient;
-    TextView latitude, longitude;
-    Button getLocBtn, sendLocBtn;
+    TextView latitude, longitude, title;
+    Button getLocBtn, validateBtn;
     private final static int REQUEST_CODE = 100;
+    private String id;
+    Double latDb, lonDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +48,9 @@ public class get_location extends AppCompatActivity {
 
         latitude = (TextView) findViewById(R.id.latitude);
         longitude = (TextView) findViewById(R.id.longitude);
-
+        title = (TextView) findViewById(R.id.lokasi_title);
         getLocBtn = (Button) findViewById(R.id.getLocBtn);
+        validateBtn = (Button) findViewById(R.id.validateLoc);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -53,6 +61,23 @@ public class get_location extends AppCompatActivity {
             }
         });
 
+        id = getIntent().getStringExtra("id");
+
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("events").document(id);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot doc = task.getResult();
+                    if (doc.exists()) {
+                        latDb = Double.parseDouble(doc.getData().get("lat").toString());
+                        lonDb = Double.parseDouble(doc.getData().get("long").toString());
+                    }
+                } else {
+                    Toast.makeText(get_location.this, "Gagal mendapatkan data event detail", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void getLastLocation() {
@@ -69,6 +94,14 @@ public class get_location extends AppCompatActivity {
                             String lon = Double.toString(addresses.get(0).getLongitude());
                             latitude.setText(lat);
                             longitude.setText(lon);
+
+                            validateBtn.setVisibility(View.VISIBLE);
+                            validateBtn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    validate_location(lat, lon);
+                                }
+                            });
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -78,6 +111,24 @@ public class get_location extends AppCompatActivity {
                     }
                 }
             });
+        }
+    }
+
+    private void validate_location(String lat, String lon) {
+        Double latParam = Double.parseDouble(lat);
+        Double lonParam = Double.parseDouble(lon);
+
+        Double maxLat = latDb - -0.1;
+        Double minLat = latDb + -0.1;
+        Double maxLon = lonDb - -0.1;
+        Double minLon = lonDb + -0.1;
+
+        if (latParam >= minLat && latParam <= maxLat && lonParam >= minLon && lonParam <= maxLon) {
+            Toast.makeText(this, "Validasi lokasi sukses", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(get_location.this, take_photo.class));
+            finish();
+        } else {
+            Toast.makeText(this, "Validasi lokasi gagal", Toast.LENGTH_SHORT).show();
         }
     }
 

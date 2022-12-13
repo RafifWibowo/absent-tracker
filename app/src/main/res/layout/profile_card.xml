@@ -20,7 +20,7 @@
             android:id="@+id/profile_card_wrapper">
             <ImageView
                 android:layout_width="130dp"
-                android:layout_height="80dp"
+                android:layout_height="90dp"
                 android:src="@drawable/image2"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/profile_card_img" />

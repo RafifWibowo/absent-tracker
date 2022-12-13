@@ -5,64 +5,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
+    android:paddingHorizontal="20dp"
     android:background="@color/background"
     tools:context=".get_location">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="50sp"
         android:fontFamily="@font/montserratbold"
         android:gravity="center"
         android:text="Cek Lokasi"
         android:textColor="@color/black"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        android:id="@+id/lokasi_title" />
 
     <ImageView
         android:id="@+id/locIcon"
         android:layout_width="match_parent"
-        android:layout_height="218dp"
-        tools:srcCompat="@drawable/location" />
+        android:layout_height="120dp"
+        android:src="@drawable/location" />
 
     <TextView
         android:id="@+id/latitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/montserratmedium"
         android:gravity="center"
         android:text="Latitude"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/longitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/montserratmedium"
         android:gravity="center"
         android:text="Longitude"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/getLocBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:backgroundTint="@color/main"
         android:fontFamily="@font/montserratbold"
         android:text="Ambil Lokasi" />
 
     <Button
-        android:id="@+id/sendLocBtn"
+        android:id="@+id/validateLoc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="7dp"
         android:backgroundTint="@color/main"
         android:fontFamily="@font/montserratbold"
-        android:text="Kirim" />
+        android:text="Validasi Lokasi"
+        android:visibility="gone" />
 
 </LinearLayout>
