@@ -22,7 +22,10 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class ProfileActivity extends AppCompatActivity {
     private LinearLayout nav_profile_home;
@@ -121,9 +124,6 @@ public class ProfileActivity extends AppCompatActivity {
     private void addEventCard(Map<String, Object> data, String id, Map<String, Object> relation, String absenId) {
         View v = getLayoutInflater().inflate(R.layout.profile_card, null);
 
-        // status: absen saat masih false, berhasil saat sudah absen, tidak absen saat false dan event "non-aktif"
-
-        // to do: link to absen by wrapper, status absen, connect to AI
         LinearLayout wrapper = v.findViewById(R.id.profile_card_wrapper);
         ImageView img = v.findViewById(R.id.profile_card_img);
         TextView title = v.findViewById(R.id.profile_card_title);
@@ -134,20 +134,44 @@ public class ProfileActivity extends AppCompatActivity {
         time.setText(data.get("time").toString());
         Picasso.get().load(data.get("path").toString()).into(img);
 
-        // Jika user sudah absen
         if (Boolean.parseBoolean(relation.get("status").toString())) {
             status.setText("Sudah Absen!");
         }
-        // Jika event masih aktif & user belum absen
         else if (data.get("status").toString().equals("active")) {
-            status.setText("Absen Sekarang!");
-            status.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(ProfileActivity.this, get_location.class).putExtra("id", id).putExtra("absenId", absenId));
+            // get current time
+            Date currentDate = new Date();
+            SimpleDateFormat curDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+            curDateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Jakarta"));
+            try {
+                Date fixCurrentDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(curDateFormat.format(currentDate));
+
+                // data from db
+                String startDate = data.get("time").toString();
+                try{
+                    Date fixStartDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(startDate);
+
+                    // jika start > currDate
+                    if (fixStartDate.compareTo(fixCurrentDate) == 1) {
+                        status.setText("Event Belum Dimulai!");
+                    }
+                    // jika start < currDate
+                    else {
+                        status.setText("Absen Sekarang!");
+                        status.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                startActivity(new Intent(ProfileActivity.this, get_location.class).putExtra("id", id).putExtra("absenId", absenId));
+                            }
+                        });
+                    }
+                } catch (Exception e) {
+                    System.out.println(e);
                 }
-            });
-        } else {
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+        else {
             status.setText("Tidak Absen!");
         }
 
